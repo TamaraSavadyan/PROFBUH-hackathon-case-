@@ -164,4 +164,4 @@ cython_debug/
 *.yml
 
 # Ignore screenshots
-/screenshots
+/app/screenshots

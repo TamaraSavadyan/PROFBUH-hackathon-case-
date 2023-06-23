@@ -1,22 +1,23 @@
+import os
 from pytube import YouTube
 from moviepy.editor import VideoFileClip
 from PIL import Image
-import time
-import os
+from utils import time_decorator
+
 
 def capture_screenshots(video_url, output_dir, interval):
-    yt = YouTube(video_url)
+    yt = YouTube(video_url, use_oauth=True, allow_oauth_cache=True)
 
     stream = yt.streams.get_highest_resolution()
 
     video_file = stream.download()
 
-    os.makedirs(output_dir, exist_ok=True)
+    # os.makedirs(output_dir, exist_ok=True)
 
     timestamp = 0
     screenshot_index = 1
     while True:
-        screenshot_filename = f'{output_dir}/screenshot_{screenshot_index}.jpg'
+        screenshot_filename = f'{output_dir}/screenshot_{screenshot_index}_{timestamp}.jpg'
         video_clip = VideoFileClip(video_file)
         frame = video_clip.get_frame(timestamp)
 
