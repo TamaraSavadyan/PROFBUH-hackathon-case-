@@ -35,7 +35,7 @@ def capture_screenshots(video_url, output_dir, interval):
     timestamp = 0
     screenshot_index = 1
     while True:
-        screenshot_filename = f'{output_dir}/screenshot_{screenshot_index}_{timestamp}.jpg'
+        screenshot_filename = f'{output_dir}/{video_file}_screenshot_{screenshot_index}_{timestamp}.jpg'
         video_clip = VideoFileClip(video_file)
         frame = video_clip.get_frame(timestamp)
 
