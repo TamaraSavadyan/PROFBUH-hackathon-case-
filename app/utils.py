@@ -5,6 +5,8 @@ from skimage.io import imread
 from skimage.color import rgb2gray
 from urllib.parse import urlparse, parse_qs
 from datetime import datetime
+from docx import Document
+
 
 def time_decorator(func):
     def wrapper(*args, **kwargs):
@@ -51,4 +53,33 @@ def compare_images_ssim(image1_path, image2_path):
     
     return ssim_value
 
-compare_images_ssim('1.jpg', '2.jpg')
+def read_srt_and_write_to_docx(file_path):
+    # Create a new Word document
+    doc = Document()
+
+    # Read the contents of the .srt file
+    with open(file_path, 'r', encoding='utf-8') as srt_file:
+        lines = srt_file.readlines()
+
+    with open(file_path, 'w') as file:
+        for line in lines:
+            file.write(line)
+
+    return file_path
+    # Process each line of the .srt file
+    for line in lines:
+        line = line.strip()
+
+        # Skip empty lines and subtitle index lines
+        if line and not line.isdigit():
+            # Add the subtitle text as a new paragraph in the document
+            doc.add_paragraph(line)
+
+    # Save the document to the specified .docx file
+    doc.save(file_path)
+
+    return f'{file_path}.docx'
+
+if __name__ == '__main__':
+    # compare_images_ssim('1.jpg', '2.jpg')
+    read_srt_and_write_to_docx('result/test.srt')

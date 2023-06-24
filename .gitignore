@@ -163,5 +163,6 @@ cython_debug/
 *.yaml
 *.yml
 
-# Ignore screenshots
+# Ignore folders
 /app/screenshots
+/app/result
