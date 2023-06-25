@@ -158,3 +158,13 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+
+# Ignore all .yaml, .yml files
+*.yaml
+*.yml
+
+# Ignore folders
+/app/screenshots
+/app/result
+/shots
+/app/whisper_models
