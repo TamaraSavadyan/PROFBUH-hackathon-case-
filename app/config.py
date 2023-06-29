@@ -18,10 +18,20 @@ class GPTAPIConfig:
 
 
 @dataclass
+class DatabaseConfig:
+    user: str
+    password: str
+    host: str
+    port: int
+    db_name: str
+
+
+@dataclass
 class Config:
     bot: BotConfig = None
     youtube_api_key: YoutubeAPIConfig = None
     gpt_api_key: GPTAPIConfig = None
+    database: DatabaseConfig = None
 
 
 def setup_config(config_path: str):
@@ -38,7 +48,18 @@ def setup_config(config_path: str):
         gpt_api_key=GPTAPIConfig(
             key=raw_config['gpt_api_key'],
         ),
+        database=DatabaseConfig(
+            user=raw_config['database']['user'],
+            password=raw_config['database']['password'],
+            host=raw_config['database']['host'],
+            port=raw_config['database']['port'],
+            db_name=raw_config['database']['db'],
+        ),
     )
 
 
 config = setup_config('config.yaml')
+
+
+if __name__ == '__main__':
+    print(config)
